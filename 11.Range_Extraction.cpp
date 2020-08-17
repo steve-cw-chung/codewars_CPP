@@ -69,6 +69,11 @@ std::string range_extraction(std::vector<int> args) {
   return retVal.substr(0,retVal.size()-1);
 }
 
+int main(){
+  std::vector<int> args = {1,2,3,4,5,6,8,9,10,12,31};
+  std::cout << range_extraction(args);
+}
+
 /* Solution 1 
 
 #include <string>
