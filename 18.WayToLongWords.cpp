@@ -8,7 +8,7 @@ int main(){
 
     for (int i=0 ; i < n ; i ++){
         std::cin >> word;
-        if(word.length()>10){
+        if(word.length()>10 ){
             newWord += word[0];
             newWord += std::to_string(word.length()-2);
             newWord += word[word.length()-1];
