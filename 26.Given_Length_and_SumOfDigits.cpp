@@ -18,56 +18,85 @@ outputCopy
 
 #include <iostream>
 #include <math.h>
+#include <string>
+#include <algorithm>
+#include <sstream>
 
 int main(){
-    long long int m,s;
+    int m,s;
     std::cin >> m >> s;
-    long long int num =0;
-    long long int min=0;
-    long long int max=0;
-    long long int i=0;
-    long long int sum = s;
-    if(s==0){
+    int m2 = m;
+    int num =0;
+    std::string min= "";
+    std::string max= "";
+    int i=0;
+    int sum = s;
+    std::ostringstream oss;
+    if ( s > m*9){
+        std::cout << "-1 -1";
+    }
+    else if(s==0 && m==1){
+        std::cout<< "0 0";
+    }
+    else if(s==0 && m!=1){
         std::cout << "-1 -1";
     }else if (s==1){
-        std::cout << pow(10,m-1)<< " " << pow(10,m-1);
+        min = "1";
+        m--;
+        for(int i = 0 ; i < m; i++){
+            min +='0';
+        }
+        max = min;
+        std::cout << min<< " " << max;
+
     }else if (m*9>=s){
         s--;
-        min = pow(10,m-1);
+        m--;
+        min += '1';
+        for(int i = 0; i < m; i++){
+            min+='0';
+        }
+        
         while(s!=0){
             if(s>=9){
-                min += 9*pow(10,i);
+                std::replace(min.end()-1-i,min.end()-i,'0','9');
+          
                 i++;
                 s-=9;
             } else {
-                min += s*pow(10,i);
+                char c = '0' + s;
+                if(min[min.length()-1-i]=='0'){
+                    std::replace(min.end()-1-i,min.end()-i,'0',c);
+                }else {
+                    std::replace(min.end()-1-i,min.end()-i,'1',++c);
+                }
                 i++;
                 s =0;
             }
         }
-        i = m-1;
-
+        i = m2-1;
+        
         while(sum!=0){
+            if(max==""){
+            for(int i =0; i<m2; i++){
+                max+="0";
+            }
+            }
             if(sum>=9){
-                //std::cout << "max :" <<max<<std::endl;
-                max += (9*pow(10,i));
-                if ( max == 899){
-                    max =900;
-                }
-                //std::cout << "9*pow(10,i) :" <<(int)9*pow(10,i)<<std::endl;
-                //std::cout << "max :" <<max<<std::endl;
+       
+                std::replace(max.end()-1-i,max.end()-i,'0','9');
+                
                 i--;
                 sum-=9;
             } else {
-                //std::cout << "max :" <<max<<std::endl;
-                max += sum*pow(10,i);
-                //std::cout << "max :" <<max<<std::endl;
+                char c = '0' + sum;
+                std::replace(max.begin(),max.end()-i,'0',c);
                 sum =0;
                 i--;
             }
         }
 
-        std::cout<< min <<" " << max;
+        std::cout<< min +" "+ max;
     }
 
     
