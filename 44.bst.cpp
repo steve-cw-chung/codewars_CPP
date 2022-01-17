@@ -8,10 +8,16 @@ struct BSTNode {
     BSTNode * right;
 
 };
+BSTNode * Insert (BSTNode * root, int data ){
+    if(root==NULL){
+        
+    }
+}
 
 int main (){
 
     BSTNode* root=new BSTNode;
+
 
 cout << root << endl;
 
