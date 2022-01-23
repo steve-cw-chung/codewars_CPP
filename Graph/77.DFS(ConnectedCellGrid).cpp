@@ -45,3 +45,97 @@ The diagram below depicts two regions of the matrix:
 
 image
 The first region has five cells and the second region has one cell. We choose the larger region. */
+#include <vector>
+#include <iostream>
+#include <unordered_map>
+
+using namespace std;
+
+void DFS(vector<vector<int>>grid,vector<vector<bool>> &visited,unordered_map<int, int> &sizes, int x, int y,int color){
+    visited[y][x]= true;
+    //cout << "x : " << x << " y: " << y << " color : " << color << " sizes[color] : " << sizes[color] <<endl;
+    sizes[color]++;
+    cout << "x : " << x << " y: " << y << " color : " << color << " sizes[color] : " << sizes[color] <<endl;
+    //Northwest [-1,-1]
+    
+    if(y-1>=0&&x-1>=0&&!visited[y-1][x-1]&&grid[y-1][x-1]==1){
+        DFS(grid,visited,sizes,x-1,y-1,color);
+    }    
+    //North [-1, 0]
+    if(y-1>=0&&!visited[y-1][x]&&grid[y-1][x]==1){
+        DFS(grid,visited,sizes,x,y-1,color);
+    }  
+    //NorthEast[-1,1]
+    if(y-1>=0&&x+1<grid[y-1].size()&&!visited[y-1][x+1]&&grid[y-1][x+1]==1){
+        DFS(grid,visited,sizes,x+1,y-1,color);
+    }  
+    //East[0,1]
+    if(x+1<grid[0].size()&&!visited[y][x+1]&&grid[y][x+1]==1){
+        DFS(grid,visited,sizes,x+1,y,color);
+    }  
+    //Southeast [1,1]
+    if(y+1<grid.size()&&x+1<grid[0].size()&&!visited[y+1][x+1]&&grid[y+1][x+1]==1){
+        DFS(grid,visited,sizes,x+1,y+1,color);
+    }  
+    //South[1,0]
+    if(y+1<grid.size()&&!visited[y+1][x]&&grid[y+1][x]==1){
+        DFS(grid,visited,sizes,x,y+1,color);
+    }  
+    //Southwest[1,-1]
+    if(x-1>=0&&y+1<grid.size()&&!visited[y+1][x-1]&&grid[y+1][x-1]==1){
+        DFS(grid,visited,sizes,x-1,y+1,color);
+    } 
+    //West[0,-1]
+    if(x-1>=0&&!visited[y][x-1]&&grid[y][x-1]==1){
+        DFS(grid,visited,sizes,x-1,y,color);
+    } 
+
+    
+}
+
+int maxRegion(vector<vector<int>> grid) {
+    vector<vector<bool>> visited;
+    //unordered_map<vector<int>,bool>visisted2;
+    unordered_map<int, int> sizes;
+    int color =0;
+    vector<bool>temp (grid[0].size(),false);
+    for(int i =0; i<grid.size();i++){
+        visited.push_back(temp);
+    }
+    cout << "grid.size() : " << grid.size() << endl;
+    cout << "grid[0].size() : " << grid[0].size() << endl;
+    for(int i =0; i<grid.size(); i++){
+        for(int j = 0; j<grid[i].size(); j++){
+            if(grid[i][j]==1 &&!visited[i][j]){
+                DFS(grid,visited,sizes,j,i,color);
+                color++;    
+            }
+        }
+    }
+    int max = 1;
+    for(auto x : sizes){
+        if(max<x.second){
+            max = x.second;
+        }
+    }
+    return max;
+}
+int main (){
+    //cout <<"Hello"<<endl;
+    vector<vector<int>> grid= {
+    {1, 0, 0, 1, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 1, 0, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 1, 0},
+    {1, 0, 0, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 1},
+    {0, 1, 0, 0, 0, 1, 0, 0}
+    };
+    int answer = maxRegion(grid);
+    cout << "max : " << answer;
+
+
+
+
+    return 0;
+}
