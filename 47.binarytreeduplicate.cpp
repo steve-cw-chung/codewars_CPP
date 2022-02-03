@@ -8,7 +8,7 @@ Input : Root of below tree
        /   \
       2     3
              \
-              2
+              2 
 Output : Yes
 Explanation : The duplicate value is 2.
 

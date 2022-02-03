@@ -4,6 +4,7 @@
 #include<climits>
 #include<list>
 #include<queue>
+
 using namespace std;
 
   
@@ -31,7 +32,7 @@ public:
 
 Graph::Graph(int V){
     this->V = V;
-    adj = new list<pair<int,int>> [V];
+    adj = new list< pair<int,int> > [V];
 }
 
 void Graph::addEdge(int u, int v, int w){
@@ -46,7 +47,7 @@ void Graph::printPath(vector<int> prev , int dest){
 }
 void Graph::shortestPath(int src){
     //make priority queue
-    priority_queue <iPair, vector<iPair>, greater<iPair>> pq;
+    priority_queue <iPair, vector<iPair>, greater<iPair> > pq;
     vector<int> dist (V,INT_MAX);
     vector<int> prev (V,-1);
     
@@ -58,7 +59,7 @@ void Graph::shortestPath(int src){
         //get the first item in the queue
         int u = pq.top().second;
         pq.pop();
-        list <pair<int,int>>::iterator i ;
+        list <pair<int,int> >::iterator i ;
         for(i = adj[u].begin() ; i!=adj[u].end() ; i++){
             //get vertex and weight of neighbor
             int v = i->first;

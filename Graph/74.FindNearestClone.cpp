@@ -161,7 +161,7 @@ int findShortest(int graph_nodes, vector<int> graph_from, vector<int> graph_to, 
     return g.minDist;
 
 }
-
+ 
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));

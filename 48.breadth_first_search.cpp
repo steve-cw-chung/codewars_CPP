@@ -63,7 +63,7 @@ void bitree::insert(int value){
             } else {
                 ptr= parent->right;
             }
-
+ 
         }
         if(value < parent-> data){
             parent->left = temp;

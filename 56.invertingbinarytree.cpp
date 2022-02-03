@@ -18,7 +18,7 @@ class BTree{
     public:
     BTree(){
         root = NULL;
-    }
+    } 
     void insert(int);
     void printTree();
     void getHeight(TreeNode*,int);

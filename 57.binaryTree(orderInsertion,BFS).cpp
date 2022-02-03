@@ -79,7 +79,7 @@ void BTree::insert(int val){
             }
         }
 
-    }
+    } 
 }
 
 int main () {

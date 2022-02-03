@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-
+ 
 int Partition(int * A, int start, int end) {
     int pivot = A[end];
     int pIndex = start;

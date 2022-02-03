@@ -113,7 +113,7 @@ void deleteNode(Node*& root, int key)
         // deallocate the memory
         free(curr);        // or delete curr;
     }
- 
+      
     // Case 2: node to be deleted has two children
     else if (curr->left && curr->right)
     {

@@ -76,7 +76,7 @@ The triplets satisfying are index , , , .
         }
     }
     n=m;
-
+ 
     long currentNumber,secondNumber, thirdNumber;
     for(auto x : m){
         //cout << "size of m " << m.size() << endl;
