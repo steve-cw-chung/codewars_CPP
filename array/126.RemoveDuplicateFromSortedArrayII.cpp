@@ -44,6 +44,13 @@ Constraints:
 nums is sorted in non-decreasing order. */
 class Solution {
 public:
+    /*int removeDuplicates(vector<int>& nums) {
+    int i = 0;
+    for (int n : nums)
+        if (i < 2 || n > nums[i-2])
+            nums[i++] = n;
+    return i;
+}*/
     int removeDuplicates(vector<int>& nums) {
         int pointer = 0;
         int counter =0;
