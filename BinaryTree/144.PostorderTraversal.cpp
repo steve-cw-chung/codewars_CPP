@@ -52,6 +52,7 @@ public:
         return postorder;
     }
 };*/
+/*
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
@@ -74,5 +75,32 @@ public:
             }
         }
         return nodes;
+    }
+};
+*/
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        stack<TreeNode*> stk;
+        if(root)stk.push(root);
+        vector<int> ans;
+        while(stk.size())
+        {
+            auto p = stk.top();
+            //All children nodes are visited
+            if(p == nullptr)
+            {
+                stk.pop();
+                ans.push_back(stk.top()->val);
+                stk.pop();
+                continue;
+            }
+            //Use nullptr to mark parent node
+            stk.push(nullptr);
+            //last in first out
+            if(p->right)stk.push(p->right);
+            if(p->left)stk.push(p->left);
+        }
+        return ans;
     }
 };
